@@ -1,12 +1,12 @@
 <html>
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset=utf-8 name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 <head>
-	<link rel="stylesheet" href="./css/main.min.css?after">
-	<link rel="stylesheet" href="./css/style_layout.css?after">
-	<link rel="stylesheet" href="./css/style_nav.css?after">
-	<link rel="stylesheet" href="./css/style_info1.css?after">
+	<link rel="stylesheet" href="./css/main.min.css?ver=1">
+	<link rel="stylesheet" href="./css/style_layout.css?ver=1">
+	<link rel="stylesheet" href="./css/style_nav.css?ver=1">
+	<link rel="stylesheet" href="./css/style_info1.css?ver=1">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script type="text/javascript" src="./js/main.min.js"></script>
+	<script type="text/javascript" src="./js/main.min.js?ver=2"></script>
 <style>
 </style>
 </head>
@@ -19,7 +19,7 @@
 			<div class="topimg">
 				<a href="#"><img src="./img/CI.png" height="auto" width="100%" style="padding: 0.5vw 0vw 0vw 0.5vw;"></a>
 			</div>
-			<div class="top_login" style="float: right; color: #ffffff;">
+			<div class="top_login" style="float: right; color: #ffffff">
 				xxxx님 , 내정보, 로그아웃, 관리자설정
 			</div>
 		</div>
@@ -103,17 +103,6 @@
 							</ul>
 						</li>
 						<li class="menu">
-							<p>위험성평가<img src="./img/menu_icon.png" style="float:right; color:#ffffff;width: 1.5vw; padding-right: 10px;"></p>
-							<ul class="hide">
-							  <li><a href="#">최초 위험성평가</a></li>
-							  <li><a href="#">수시 위험성평가</a></li>
-							  <li><a href="#">정기 위험성평가</a></li>
-							  <li><a href="#">월간 위험성평가</a></li>
-							  <li><a href="#">주간 위험성평가</a></li>
-							  <li><a href="#">일일 위험성평가</a></li>
-							</ul>
-						</li>
-						<li class="menu">
 							<p>협의체,위원회관리<img src="./img/menu_icon.png" style="float:right; color:#ffffff;width: 1.5vw; padding-right: 10px;"></p>
 							<ul class="hide">
 							  <li><a href="#">노사협의체</a></li>
@@ -158,21 +147,134 @@
 			<div class="content">
 				<div class="con3">청주시 한국안전기업 구축사업 <a style="float: right;">공 사 기 간	:	2022년 01월24일 ~ 2022년 09월 30일</a></div>
 					<div class="main1">
-						<div class="con4">
-							4번
-						</div>
-						<div class="con5">
-						</div>
 						<div class="con6">
-							<form action="./file.php" method="POST" enctype="multipart/form-data">
-								<input type="file" name="aaa[]" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" multiple/> <br>
-								<input type="submit">
-							</form>
+							<div class="container">
+								<div class="modal-btn-box">
+									<button type="button" id="modal-open">파일업로드</button>  
+								</div>
+									<div class="popup-wrap" id="popup">
+										<div class="popup">
+											<div class="popup-head">
+												<span class="head-title">업로드 영역</span>
+											</div>
+											<div class="popup-body">
+												<div class="body-content">
+													<div class="body-contentbox">
+														<form action="./php/file.php" method="POST" target="iframe1" enctype="multipart/form-data">
+															<input type="file" name="aaa[]" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" multiple/> <br>
+															<input type="submit">
+														</form>
+														파일 리스트 만들기</br>
+														<form action="./php/check.php" method="post" target="iframe1">
+															<table>
+																<tr>
+																	<td>업로드 날짜</td>
+																	<td><input type="text" name="date"></td>
+																</tr>
+																<tr>
+																	<td>문서 제목</td>
+																	<td><input type="text" name="name"></td>
+																</tr>
+																<tr>
+																	<td>담당부서</td>
+																	<td><input type="text" name="writer"></td>
+																</tr>
+															</table>
+																<select name="Main_Category" onchange="categoryChange(this)">
+																	<option value="">대분류 선택</option>
+																	<option value="a">선임 및 지정서</option>
+																	<option value="b">산업안전 보건 관리비</option>
+																	<option value="c">점검일지</option>
+																	<option value="d">위험성평가</option>
+																	<option value="e">교육관리</option>
+																	<option value="f">작업계획서관리</option>
+																	<option value="g">협의체,위원회관리</option>
+																	<option value="h">근로자관리</option>
+																	<option value="i">현장관리</option>
+																	<option value="j">유해위험 방지</option>
+																</select>
+																<select id="title" name="category">
+																	<option type="text">소분류 선택</option>
+																</select>
+															<div class="popup-foot">
+															<input class="pop-btn close" id="close" onClick="javascript:btn('문서가 등록되었습니다.')" type="submit" value="문서 등록">
+															<input class="pop-btn confirm" type="reset" value="다시입력하기">
+															<button class="pop-btn close" id="close" onClick="window.location.reload()">닫기</button>
+														</form>
+															</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							</div>
 						</div>
-						<div class="con7">7번</div>
-						<div class="con8">8번</div>
+						<div class="con7">
+							<button onClick="window.location.reload()">선임 및 지정서 문서목록 새로고침</button>
+							<?php
+								/* Load DB */
+								$conn = mysqli_connect('localhost', 'safework', 'com47982@@', 'safework');
+								if ( !$conn ) die('DB Error');
+					
+								/* Set to UTF-8 Encoding */
+								mysqli_query($conn, 'set session character_set_connection=utf8;');
+								mysqli_query($conn, 'set session character_set_results=utf8;');
+								mysqli_query($conn, 'set session character_set_client=utf8;');
+								
+								/* Load data */
+								$query = 'SELECT * FROM A';
+								$result = mysqli_query($conn, $query);
+								
+								echo '<table class="text-center"><tr>' .
+									'<th>업로드 날짜</th><th>문서 이름</th><th>카테고리</th><th>담당부서</th><th>승인여부</th>' .
+									'</tr>';
+								while( $row = mysqli_fetch_array($result) ) {
+									echo '<tr><td>' . $row['date'] . '</td>' .
+										'<td>' . $row['name'] . '</td>' .
+										'<td>' . $row['category'] . '</td>' .
+										'<td>' . $row['writer'] . '</td>' .
+										'<td class="text-right">' . $row['approval'] . '</td></tr>';
+								}
+					
+								echo '</table>';
+								mysqli_close($conn);
+							?>
+							
+						</div>
+						<div class="con8">
+							<button onClick="window.location.reload()">산업안전보건관리비 문서목록 새로고침</button>
+							<?php
+								/* Load DB */
+								$conn = mysqli_connect('localhost', 'safework', 'com47982@@', 'safework');
+								if ( !$conn ) die('DB Error');
+					
+								/* Set to UTF-8 Encoding */
+								mysqli_query($conn, 'set session character_set_connection=utf8;');
+								mysqli_query($conn, 'set session character_set_results=utf8;');
+								mysqli_query($conn, 'set session character_set_client=utf8;');
+								
+								/* Load data */
+								$query = 'SELECT * FROM B';
+								$result = mysqli_query($conn, $query);
+								
+								echo '<table class="text-center"><tr>' .
+									'<th>업로드 날짜</th><th>문서 이름</th><th>카테고리</th><th>담당부서</th><th>승인여부</th>' .
+									'</tr>';
+								while( $row = mysqli_fetch_array($result) ) {
+									echo '<tr><td>' . $row['date'] . '</td>' .
+										'<td>' . $row['name'] . '</td>' .
+										'<td>' . $row['category'] . '</td>' .
+										'<td>' . $row['writer'] . '</td>' .
+										'<td class="text-right">' . $row['approval'] . '</td></tr>';
+								}
+					
+								echo '</table>';
+								mysqli_close($conn);
+							?>
+						</div>
 						<div class="main2">
-							<div class="con9">9번</div>
+							<div class="con9">
+							</div>
 							<div class="con10">10번</div>
 						</div>
 					</div>
@@ -181,4 +283,6 @@
 		</div>
 	</div>
 </body>
+<iframe id="iframe1" name="iframe1" style="display:none"></iframe>
+
 </html>	
